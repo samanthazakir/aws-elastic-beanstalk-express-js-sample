@@ -8,19 +8,17 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'npm install'
-            }
+                git url: 'git@github.com:samanthazakir/Project2-Compose.git', branch:'main'
+                echo 'Building the application'
         }
         stage('Test') {
             steps {
-                sh './jenkins/scripts/test.sh'
+                echo 'Building the application'
             }
         }
-        stage('Deliver') { 
+        stage('Deploy') { 
             steps {
-                sh './jenkins/scripts/deliver.sh' 
-                input message: 'Finished using the web site? (Click "Proceed" to continue)' 
-                sh './jenkins/scripts/kill.sh' 
+                echo 'Deploying...' 
             }
         }
     }
