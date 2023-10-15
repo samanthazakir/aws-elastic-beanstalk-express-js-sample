@@ -1,9 +1,5 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:16'
-        }
-    } 
+    agent any
     
     stages{
         stage("Clone Code"){
@@ -15,6 +11,7 @@ pipeline {
         stage("Build"){
             steps {
                 echo "Building the image"
+                sh "docker build -t"
             }
         }
    }
