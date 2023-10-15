@@ -2,9 +2,7 @@ pipeline {
     agent {
         docker {
             image 'node:16'
-            args '-u root' // Run Docker container as root
-            // Mount the Docker socket from the host into the container
-            volumes '/var/run/docker.sock:/var/run/docker.sock'
+            args '-u root --privileged' // Run Docker container as root and privileged
         }
     }
     stages {
