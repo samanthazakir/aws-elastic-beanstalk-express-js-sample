@@ -1,5 +1,10 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'node:16' // Use Node 16 Docker image as the build agent
+            args '-u root' // Optionally, run Docker container as root
+        }
+    }
     
     stages{
         stage("Clone Code"){
