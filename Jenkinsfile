@@ -1,24 +1,18 @@
 pipeline {
     agent {
         docker {
-            image 'node:16' // Use Node 16 Docker image as the build agent
-            args '-u root' // Optionally, run Docker container as root
+            image 'node:16'
+            args '-u root' // Run Docker container as root
+            // Mount the Docker socket from the host into the container
+            volumes '/var/run/docker.sock:/var/run/docker.sock'
         }
     }
-    
-    stages{
-        stage("Clone Code"){
+    stages {
+        stage('Build') {
             steps {
-                echo "Cloning the code"
-                git url:"https://github.com/samanthazakir/aws-elastic-beanstalk-express-js-sample.git", branch: "main"
-            }
-      }
-        stage("Build"){
-            steps {
-                echo "Building the image"
-                sh "npm install --save"
+                sh 'npm install --save'
             }
         }
-   }
-
+        // Add more stages as needed for your specific build and deployment process
+    }
 }
