@@ -1,16 +1,15 @@
-pipeline {
-    agent {
-        docker {
-            image 'node:16'
-            args '-u root --privileged' // Run Docker container as root and privileged
-        }
+pipeline { 
+  agent {
+    docker {
+      image 'node:16'
+      args '-p 3000:3000'
     }
-    stages {
-        stage('Build') {
-            steps {
-                sh 'npm install --save'
-            }
-        }
-        // Add more stages as needed for your specific build and deployment process
+  }
+  stages {
+    stage('Build') {
+      steps {
+        sh 'npm install --save'
+      }
     }
+  }
 }
