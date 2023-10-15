@@ -11,6 +11,7 @@ pipeline {
         stage("Build"){
             steps {
                 echo "Building the image"
+                sh 'npm install --save'
             }
         }
    }
