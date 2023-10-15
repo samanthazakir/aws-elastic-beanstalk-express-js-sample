@@ -1,15 +1,14 @@
-pipeline { 
-  agent {
-    docker {
-      image 'node:16'
-      args '-p 3000:3000'
+pipeline {
+    agent {
+        docker {
+            image 'node:16-alpine'
+        }
     }
-  }
-  stages {
-    stage('Build') {
-      steps {
-        sh 'npm install --save'
-      }
+    stages {
+        stage('build') {
+            steps {
+                sh 'npm install --save'
+            }
+        }
     }
-  }
 }
